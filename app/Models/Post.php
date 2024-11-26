@@ -16,12 +16,12 @@ class Post extends Model
         'categoria_id',
     ];
 
-    //relacion uno a muchos inversa (user->post)
+    //* relacion uno a muchos inversa (user->post)
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    //relacion uno a muchos inversa (post->categoria)
+    //* relacion uno a muchos inversa (post->categoria)
     public function categoria()
     {
         return $this->belongsTo(Categoria::class);
@@ -36,6 +36,12 @@ class Post extends Model
     //* Relacion 1:N polimorfica
     public function comment(){
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    //* Relacion N:N polimorfica
+
+    public function taggables(){
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
 }
