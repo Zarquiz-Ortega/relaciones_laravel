@@ -16,9 +16,14 @@ class Video extends Model
         'user_id'
     ];
 
-    //* Relacion 1:n (inversa)p
+    //* Relacion 1:n (inversa)si
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    //* Relacion 1:N polimorfica
+    public function comment(){
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
 }
